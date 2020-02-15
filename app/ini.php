@@ -22,7 +22,6 @@ define('REPEAT_ERR_URL', 0); // number repeat of the repeatErrorURL
 define('REPEAT_ERR_URL_DELAY', 60); // time between repeatErrorURL
 define('LEVELS', 3); // number of Spider pass levels
 define('SAVE_HTML_PAGE', 0);// 1 - save
-//define('PROFILE', '- user-data-dir');// профиль в браузере
 /** DB */
 define('TURN_OVER_BENEFIT', 1); // 1 - true turnOverOutput 2 - true straightOutput
 define('DB_NAME', 'parser');
@@ -35,8 +34,8 @@ file_exists(DIR_SCRIPT.'/storage/projects')? :mkdir(DIR_SCRIPT.'/storage/project
 file_exists(COOKIE_FILE)? :mkdir(COOKIE_FILE);
 file_exists(PROJECT_DIR)? :mkdir(PROJECT_DIR);
 
-
-ini_set("memory_limit", "1000M"); //default 128M
+/** main settings */
+ini_set("memory_limit", "1000M");
 ini_set('max_execution_time',0);
 /** Output errors */
 ini_set('error_reporting', E_ALL);

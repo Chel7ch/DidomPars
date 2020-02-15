@@ -33,10 +33,7 @@ class Spider
     {
         if (!file_exists(PROJECT_DIR)) mkdir(PROJECT_DIR);
 
-
     }
-
-//todo сделать статический $linked[] из за repeatErrorPage() !!!!!!!!
 
     /**
      * @param array $links required only if you want to pass repeatErrorPage

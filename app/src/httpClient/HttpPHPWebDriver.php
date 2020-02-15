@@ -27,7 +27,6 @@ class HttpPHPWebDriver implements IHttpClient
         # :chrome  => chrome
         # :ie      => iexplore
         $host = 'http://localhost:4444/wd/hub';
-//        $this->driver = RemoteWebDriver::create($host, DesiredCapabilities::$browserType());
 
         $desiredCapabilities = DesiredCapabilities::$browserType();
         $desiredCapabilities->setCapability('acceptSslCerts', false);
@@ -65,10 +64,6 @@ class HttpPHPWebDriver implements IHttpClient
 
         return $links;
 
-////////////////////////////////////////////////
-//        $driver->wait(5, 1000)->until(
-//            WebDriverExpectedCondition::titleContains('Курс программирования:')
-//        );
 
     }
 

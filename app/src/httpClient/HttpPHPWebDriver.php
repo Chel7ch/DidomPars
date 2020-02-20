@@ -18,24 +18,25 @@ class HttpPHPWebDriver implements IHttpClient
     public $url;
     public $scratch;
 
-    public function __construct($url, $scratch, $browserType)
+    public function __construct($url,$browserType)
     {
         $this->url = $url;
-        $this->scratch = $scratch;//!!!!!!!!!!!!!!!!!!!!!
+//        $this->scratch = $scratch;//!!!!!!!!!!!!!!!!!!!!!
         # browser_type
         # :firefox => firefox
         # :chrome  => chrome
         # :ie      => iexplore
         $host = 'http://localhost:4444/wd/hub';
+//        $this->driver = RemoteWebDriver::create($host, DesiredCapabilities::$browserType());
 
         $desiredCapabilities = DesiredCapabilities::$browserType();
         $desiredCapabilities->setCapability('acceptSslCerts', false);
-//        $desiredCapabilities->setCapability(FirefoxDriver::PROFILE, PROFILE); //?????
         $this->driver = RemoteWebDriver::create($host, $desiredCapabilities);
     }
 
     public function getPage($page)
     {
+        $document = '';
         try {
             $this->driver->get($page);
 
@@ -55,16 +56,10 @@ class HttpPHPWebDriver implements IHttpClient
 
         if (isset($content)) {
             $document = new Document($content);
-            $links = $document->find('a::attr(href)');
+            $this->saveHTMLPage($document, $page);
+        }
 
-            $this->SaveHTMLPage($document ,$page);
-
-//            $this->benefit($page, $document, $scratch);
-        } else $links[] = $this->url;
-
-        return $links;
-
-
+        return $document;
     }
 
     public function postPage($page, $postData)

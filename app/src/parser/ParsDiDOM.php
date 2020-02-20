@@ -15,13 +15,11 @@ class ParsDiDOM
      * @var array scratch  XML expressions for searching on a page. Needs of benefits
      * @var object client HTTP client
      * @var object connect PDO
+     * @var array linked reviewed links
      */
     public $scratch;
     public $client;
     public $connect;
-    /**
-     * @var array
-     */
     public $linked;
 
     public function __construct($scratch)
@@ -30,7 +28,7 @@ class ParsDiDOM
     }
 
     /**
-     *  Implements dependency injection
+     *  dependency injection
      * @param \Client\IHttpClient $client
      */
     public function setHttpClient(\Client\IHttpClient $client)
@@ -41,7 +39,7 @@ class ParsDiDOM
     }
 
     /**
-     * Implements dependency injection
+     * dependency injection
      * @param string $url
      * @return string HTML doc
      */
@@ -123,7 +121,7 @@ class ParsDiDOM
                 usleep(USLEEP);
             }
         }
-// todo заставить работать
+// todo заставить работать правильно ( сделать if !empty)
         for ($e = 0; $e < REPEAT_ERR_URL; $e++) {
             $this->readErrorURL();
             sleep(REPEAT_ERR_URL_DELAY);
@@ -141,7 +139,7 @@ class ParsDiDOM
 /////////////////////////////////////////////////////////////////////////////
 
     /**
-     *  Implements dependency injection
+     *  Dependency injection
      * @param \DB\IDBConnection $connect
      */
     public function DBConnection(\DB\IDBConnection $connect)

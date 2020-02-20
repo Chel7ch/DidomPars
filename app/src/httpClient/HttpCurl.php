@@ -12,15 +12,16 @@ class HttpCurl implements IHttpClient
     private $page;
     public $scratch;
 
-    public function __construct($url, $scratch, $header)
+    public function __construct($url, $header)
     {
         $this->url = $url;
-        $this->scratch = $scratch; // !!!!!!!!!!!!!!!!!!!!!!!
+//        $this->scratch = $scratch; // !!!!!!!!!!!!!!!!!!!!!!!
         $this->header = $header;
     }
 
     public function getPage($page)
     {
+        $document = '';
         $postData = '';
          $agent = null ;
         $this->page = $page;
@@ -80,14 +81,10 @@ class HttpCurl implements IHttpClient
         curl_close($curl);
         if (isset($content) && !empty($content)) {
             $document = new Document($content);
-            $links = $document->find('a::attr(href)');
+            $this->saveHTMLPage($document, $page);
+        }
 
-            $this->SaveHTMLPage($document ,$page);
-
-//            $this->benefit($page, $document, $scratch);
-        } else $links[] = $this->url;
-
-        return $links;
+        return $document;
     }
 
     public function curlInfo($dp, $postData = '')

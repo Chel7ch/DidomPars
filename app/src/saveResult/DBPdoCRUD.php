@@ -6,21 +6,15 @@ class DBPdoCRUD
 {
     public  $sql;
 
-//    public function __construct($pdo)
-//    {
-//        $this->sql = $pdo;
-//    }
-
-    public function DBase(IDBConnection $sql)
+    public function __construct(\DB\IDBConnection $pdo)
     {
-        $this->sql = $sql;
+        $this->sql = $pdo;
     }
 
-    public function conn()
+    public function connect()
     {
         return $this->sql->connect();
     }
-
 
     public function prepareInsert($benefit = [])
     {
@@ -40,24 +34,17 @@ class DBPdoCRUD
     }
 
     public function insertDB($sql=''){
-        echo '___________________ $sql______________<br>';
-        print_r($sql);
-//        $sql = "INSERT INTO bk55_ru(links,field1,field2,field3) VALUES('bk55.ru', '15', '18', '14'),('bk55.ru', '60', '33', '180'),('bk55.ru', '25', '516', '7')";
-//        $this->connect()->exec($sql);
-
-// echo $query;
+        $this->connect()->exec($sql);
     }
 
     public function selectDB($sql='')
     {
         $sql = 'SELECT * FROM '. TAB_NAME;
 
-        $st = $this->conn()->query($sql);
+        $st = $this->connect()->query($sql);
         $results = $st->fetchAll();
 
-
         foreach ($results as $row) {
-//            print_r( $row );
             echo $row['id'] . ' ';
             echo $row['links'] . ' ';
             echo $row['field1'] . '<br> ';

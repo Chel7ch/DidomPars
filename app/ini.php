@@ -17,10 +17,10 @@ define('COOKIE_FILE', DIR_SCRIPT. '/storage/cookies');
 define('LOG_FILE', DIR_SCRIPT. '/storage/logs/php_errors.log');
 define('ERR_RESP_FILE', PROJECT_DIR . '/logs/err_response.csv');
 /** Setting */
-define('USLEEP', 0.2 *100000); // milliseconds waiting for script
+define('USLEEP', 0.4 *100000); // milliseconds waiting for script
 define('REPEAT_ERR_URL', 0); // number repeat of the repeatErrorURL
 define('REPEAT_ERR_URL_DELAY', 60); // time between repeatErrorURL
-define('LEVELS', 3); // number of Spider pass levels
+define('LEVELS', 1); // number of Spider pass levels
 define('SAVE_HTML_PAGE', 0);// 1 - save
 /** DB */
 define('TURN_OVER_BENEFIT', 1); // 1 - true turnOverOutput 2 - true straightOutput

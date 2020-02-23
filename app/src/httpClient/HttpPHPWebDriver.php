@@ -21,7 +21,6 @@ class HttpPHPWebDriver implements IHttpClient
     public function __construct($url,$browserType)
     {
         $this->url = $url;
-//        $this->scratch = $scratch;//!!!!!!!!!!!!!!!!!!!!!
         # browser_type
         # :firefox => firefox
         # :chrome  => chrome

@@ -9,7 +9,6 @@ class MYSQLConnection implements IDBConnection
 {
 
     private $pdo = null;
-    private $sql;
 
     public function connect()
     {

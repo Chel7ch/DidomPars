@@ -2,8 +2,6 @@
 
 namespace Parser;
 
-use DB\MYSQLConnection;
-
 
 class ParsDiDOM
 {
@@ -28,18 +26,15 @@ class ParsDiDOM
     }
 
     /**
-     *  dependency injection
      * @param \Client\IHttpClient $client
      */
     public function setHttpClient(\Client\IHttpClient $client)
     {
         $this->client = $client;
         $this->url = $this->client->url;
-//        return $this->client;
     }
 
     /**
-     * dependency injection
      * @param string $url
      * @return string HTML doc
      */
@@ -50,25 +45,25 @@ class ParsDiDOM
 
     /**
      * pulls links from page
-     * @param string $document  HTML doc
+     * @param string $document HTML doc
      * @return array
      * @uses CleanLinks trait
      */
     public function getLinks($document)
     {
-        $links =array();
-        if(!empty($document)){
-        $links = $document->find('a::attr(href)');
-        $links = $this->cleanLinks($links);
-    }
+        $links = array();
+        if (!empty($document)) {
+            $links = $document->find('a::attr(href)');
+            $links = $this->cleanLinks($links);
+        }
         return $links;
     }
 
     /**
      * pulls  benefits  data from page
      * @param string $page URN
-     * @param string $document  HTML doc
-     * @param array $scratches  DiDom find expressions
+     * @param string $document HTML doc
+     * @param array $scratches DiDom find expressions
      * @return array
      * @uses StraightOut, TurnOverOut traits
      */
@@ -94,16 +89,12 @@ class ParsDiDOM
     {
         if (empty($links)) {
             $this->linked = array();
-//            $links = $this->getPage($this->url);
             $links = $this->getLinks($this->getPage($this->url));
-//            $this->benefit($this->url, $this->getPage($this->url), $this->scratch);
         }
 
         for ($i = 1; $i <= LEVELS; $i++) {
             foreach ($links as $nextLink) {
-//                $subLinks = $this->getPage($nextLink);
                 $subLinks = $this->getLinks($this->getPage($nextLink));
-//                $this->benefit($nextLink, $this->getPage($nextLink), $this->scratch);
 
                 if (!empty($subLinks)) {
                     foreach ($subLinks as $subLink) {
@@ -136,50 +127,23 @@ class ParsDiDOM
         echo '</pre>';
     }
 
-/////////////////////////////////////////////////////////////////////////////
-
-    /**
-     *  Dependency injection
-     * @param \DB\IDBConnection $connect
-     */
-    public function DBConnection(\DB\IDBConnection $connect)
+    /** ConnectDB  */
+    public function connectDB($db)
     {
-        $this->connect = $connect;
-//        $this->url = $this->client->url;
+        $this->conn = $db;
     }
 
-    public function connect()
-    {
-        return $this->connect->connect();
-    }
-
+    /** InsertDB  */
     public function insertDB()
-
     {
-        $conn = new \DB\DBPdoCRUD();
-        $conn->DBase(new MYSQLConnection());
-//        $a =$conn->prepareInsert($conn->turnOver());
-        $a = $this->benefit($this->url, $this->getPage($this->url), $this->scratch);
-        $conn->insertDB($conn->prepareInsert($a));
-//        return $this->connect()->insertDB();
+        $benefit = $this->benefit($this->url, $this->getPage($this->url), $this->scratch);
+        $this->conn->insertDB($this->conn->prepareInsert($benefit));
     }
 
-    public function selectDB($sql)
+    /** SelectDB  */
+    public function selectDB()
     {
-        $conn = new \DB\DBPdoCRUD();
-        $conn->DBase(new MYSQLConnection());
-        $conn->selectDB();
-
-//       $a = new \DB\MYSQLConnection();
-//        $b = $a->connect();
-//        $c = new \DB\DBPdoCRUD($b);
-//        $d =$c->selectDB($sql);
-
-
-//        $db = new \DB\DBPdoCRUD((new \DB\MYSQLConnection())->connect());
-//        $db->selectDB($sql);
-//        sqlite = new SQLiteCreateTable((new DB\SQLiteConnection())->connect());
-//        return ((\DB\DBPdoCRUD->selectDB($sql);
+        $this->conn->selectDB();
     }
 
 }

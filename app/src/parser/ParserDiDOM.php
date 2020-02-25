@@ -2,6 +2,8 @@
 namespace Parser;
 
 
+use DiDom\Document;
+
 abstract class ParserDiDOM{
 
      /**plug-in traits */
@@ -38,7 +40,12 @@ abstract class ParserDiDOM{
       */
      public function getPage($url)
      {
-         return $this->client->getPage($url);
+         $document='';
+         $content = $this->client->getPage($url);
+         if (isset($content)) {
+             $document = new Document($content);
+         }
+         return $document;
      }
 
      /**

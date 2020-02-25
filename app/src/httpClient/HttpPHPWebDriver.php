@@ -2,7 +2,6 @@
 
 namespace Client;
 
-use DiDom\Document;
 use Facebook\WebDriver\Exception\WebDriverException;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
@@ -33,11 +32,11 @@ class HttpPHPWebDriver implements IHttpClient
 
     public function getPage($page)
     {
-        $document = '';
+        $content = '';
         try {
             $this->driver->get($page);
-            sleep(10); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            $this->driver->get($page);
+//            sleep(10); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//            $this->driver->get($page);
 
             $cookie = new \Facebook\WebDriver\Cookie('cookie_name', 'cookie_value');
             $this->driver->manage()->addCookie($cookie);
@@ -53,12 +52,9 @@ class HttpPHPWebDriver implements IHttpClient
         } catch (WebDriverException $e) {
         }
 
-        if (isset($content)) {
-            $document = new Document($content);
-            $this->saveHTMLPage($document, $page);
-        }
+        $this->saveHTMLPage($content, $page);
 
-        return $document;
+        return $content;
     }
 
     public function postPage($page, $postData)

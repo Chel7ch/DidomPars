@@ -2,7 +2,6 @@
 
 namespace Client;
 
-use DiDom\Document;
 
 class HttpCurl implements IHttpClient
 {
@@ -21,7 +20,7 @@ class HttpCurl implements IHttpClient
 
     public function getPage($page)
     {
-        $document = '';
+        $content = '';
         $postData = '';
          $agent = null ;
         $this->page = $page;
@@ -79,12 +78,10 @@ class HttpCurl implements IHttpClient
         } catch (RequestException $e) {
         }
         curl_close($curl);
-        if (isset($content) && !empty($content)) {
-            $document = new Document($content);
-            $this->saveHTMLPage($document, $page);
-        }
 
-        return $document;
+        $this->saveHTMLPage($content, $page);
+
+        return $content;
     }
 
     public function curlInfo($dp, $postData = '')
@@ -138,7 +135,5 @@ class HttpCurl implements IHttpClient
     {
     }
 
-    public function close()
-    {
-    }
+
 }

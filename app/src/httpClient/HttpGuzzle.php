@@ -2,7 +2,6 @@
 
 namespace Client;
 
-use DiDom\Document;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
@@ -44,7 +43,7 @@ class HttpGuzzle implements IHttpClient
      */
     public function getPage($page)
     {
-        $document = '';
+        $content = '';
         try {
             $acceptDoc = $this->client->request('GET', $page);
 
@@ -55,12 +54,9 @@ class HttpGuzzle implements IHttpClient
         } catch (RequestException $e) {
         }
 
-        if (isset($content)) {
-            $document = new Document($content);
-            $this->saveHTMLPage($document, $page);
-        }
+        $this->saveHTMLPage($content, $page);
 
-        return $document;
+        return $content;
     }
 
 
@@ -69,9 +65,6 @@ class HttpGuzzle implements IHttpClient
 
     }
 
-    public function close()
-    {
 
-    }
 
 }

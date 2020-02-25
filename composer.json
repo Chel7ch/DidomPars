@@ -12,7 +12,8 @@
       "Src\\": "app/src/",
       "Client\\": "app/src/httpClient/",
       "Parser\\": "app/src/parser/",
-      "DB\\": "app/src/saveResult/"
+      "DB\\": "app/src/saveResult/",
+      "Proxy\\": "app/src/proxy/"
     }
   }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Client;
+namespace Parser;
 
 trait RepeatErrResp{
 

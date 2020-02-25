@@ -26,8 +26,6 @@ class HttpPHPWebDriver implements IHttpClient
         # :chrome  => chrome
         # :ie      => iexplore
         $host = 'http://localhost:4444/wd/hub';
-//        $this->driver = RemoteWebDriver::create($host, DesiredCapabilities::$browserType());
-
         $desiredCapabilities = DesiredCapabilities::$browserType();
         $desiredCapabilities->setCapability('acceptSslCerts', false);
         $this->driver = RemoteWebDriver::create($host, $desiredCapabilities);
@@ -38,12 +36,14 @@ class HttpPHPWebDriver implements IHttpClient
         $document = '';
         try {
             $this->driver->get($page);
+            sleep(10); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            $this->driver->get($page);
 
             $cookie = new \Facebook\WebDriver\Cookie('cookie_name', 'cookie_value');
             $this->driver->manage()->addCookie($cookie);
             $cookies = $this->driver->manage()->getCookies();
-            print_r($cookies);
-            print_r(get_headers($page));
+//            print_r($cookies);
+//            print_r(get_headers($page));
 
             $this->errResp(http_response_code(), $page);
             $element = $this->driver->findElement(WebDriverBy::tagName('*'));

@@ -2,22 +2,47 @@
 
 namespace Parser;
 
-use DiDom\Document;
-
-class ReadSaveFiles
+/**
+ * Class ReadSaveFiles crawling files from storage/progects/../htmlPages
+ * @package Parser
+ */
+class ReadSaveFiles extends ParserDiDOM
 {
-
-    public function getPage()
+    /**
+     * Crawling files from storage/progects/../htmlPages
+     * @param $scratch
+     * @return void
+     */
+    public function getFile($scratch)
     {
-        if (file_exists(PROJECT_DIR . '/htmlPages')) {
-            $entries = scandir(PROJECT_DIR . '/htmlPages');
-            foreach ($entries as $entry) {
-                $doc = PROJECT_DIR . '/htmlPages/'. $entry;
-                $document = new Document();
-                $document->loadHtml($doc);
+        $i = 1;
+        $dir = PROJECT_DIR . '/htmlPages';
+        if (file_exists($dir)) {
+            $files = scandir($dir);
+
+            foreach ($files as $fname) {
+                $doc = $dir . '/' . $fname;
+                if (strpos($doc, '.html', -5)) {
+
+                    $trans = array(".html" => "", "~~" => "/");
+                    $fn = strtr("$fname", $trans);
+
+                    $b = $this->parsFile($doc)->benefit($fn, $scratch);
+                    $this->insertDB($b);
+                }
             }
         }
-        echo $document;
+    }
+
+    /**
+     * @param  $fName
+     * @return ReadSaveFiles
+     */
+    public function parsFile($fName)
+    {
+        $this->page = $this->doc->loadHtmlfile($fName);
+
+        return $this;
     }
 
 }

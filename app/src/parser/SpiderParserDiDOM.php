@@ -10,24 +10,27 @@ class SpiderParserDiDOM extends ParserDiDOM
 
     /**
      * Crawling site pages on links
+     * @param array $scratch
      * @param array $links required only if you want to pass repeatErrorPage
      * @return void
      */
-    public function spider($links = [])
+    public function spider($scratch = [], $links = [])
     {
         if (empty($links)) {
             $this->linked = array();
-            $links = $this->getLinks($this->getPage($this->url));
+            $links = $this->parsPage($this->url)->getLinks();
+            $b = $this->parsPage($this->url)->benefit($this->url, $scratch);
+            $this->insertDB($b);
         }
 
         for ($i = 1; $i <= LEVELS; $i++) {
             foreach ($links as $nextLink) {
-                $subLinks = $this->getLinks($this->getPage($nextLink));
-
+                $subLinks = $this->parsPage($nextLink)->getLinks();
+                $b = $this->parsPage($nextLink)->benefit($nextLink, $scratch);
+                $this->insertDB($b);
                 if (!empty($subLinks)) {
                     foreach ($subLinks as $subLink) {
                         $ln[] = $subLink;
-//                        echo $subLink . '<br>';// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     }
                 }
                 echo 'уровень  ' . $i . '  _  ' . count($this->linked) . '  в linked  ' . count($links) . '  в $links <br>';

@@ -21,7 +21,7 @@ define('USLEEP', 0.4 *100000); // milliseconds waiting for script
 define('REPEAT_ERR_URL', 0); // number repeat of the repeatErrorURL
 define('REPEAT_ERR_URL_DELAY', 60); // time between repeatErrorURL
 define('LEVELS', 1); // number of Spider pass levels
-define('SAVE_HTML_PAGE', 1);// 1 - save in storage html page
+define('SAVE_HTML_PAGE', 0);// 1 - save in storage html page
 /** DB */
 define('TURN_OVER_BENEFIT', 1); // 1 - true turnOverOutput 2 - true straightOutput
 define('DB_NAME', 'parser');

@@ -27,7 +27,7 @@ class ReadSaveFiles extends ParserDiDOM
                     $trans = array(".html" => "", "~~" => "/");
                     $fn = strtr("$fname", $trans);
 
-                    $b = $this->parsFile($doc)->benefit($fn, $scratch);
+                    $b = $this->parsFile($doc)->prepOutput($this->benefit($fn, $scratch));
                     $this->insertDB($b);
                 }
             }

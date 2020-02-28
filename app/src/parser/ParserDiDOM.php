@@ -4,12 +4,13 @@ namespace Parser;
 
 
 use DiDom\Document;
+use DiDom\Query;
 
-abstract class ParserDiDOM
+abstract class ParserDiDOM extends PrepareOutput
 {
 
     /**plug-in traits */
-    use CleanLinks, StraightOut, TurnOverOut;
+    use CleanLinks, FilterHidemyName;
 
     /**
      * @var array scratch  XML expressions for searching on a page. Needs of benefits
@@ -79,17 +80,29 @@ abstract class ParserDiDOM
      * @param string $page URN
      * @param array $scratches DiDom find expressions
      * @return array
-     * @uses StraightOut, TurnOverOut traits
      */
     public function benefit($page, $scratches = [])
     {
         $data[] = $page;
         foreach ($scratches as $scratch) {
-            $arr = $this->page->find($scratch);
-            (!empty($arr))? $data[] = $arr : $data[] = array('null');
+//            $data[] = $this->page->find($scratch);
+            $data[] = $this->page->find($scratch, Query::TYPE_XPATH);
         }
-        if (TURN_OVER_BENEFIT == 1) $data = $this->turnOverOutput($data);
-        if (TURN_OVER_BENEFIT == 2) $data = $this->straightOutput($data);
+        return $data;
+    }
+
+    /**
+     * prepare data for output
+     * @param array $data
+     * @return array
+     */
+    public function prepOutput($data)
+    {
+        if (SPECIAL_PREPARE == 1) $data = $this->specialPrepOutput($data);
+        elseif (PREPARE_BENEFIT == 1) $data = $this->turnOverOutput($data);
+        elseif (PREPARE_BENEFIT == 0) $data = $this->straightOutput($data);
+        if (PREP_QUERY_FOR_DB == 1) $data = $this->prepInsertDB($data);
+
         return $data;
     }
 
@@ -102,13 +115,19 @@ abstract class ParserDiDOM
     /** InsertDB  */
     public function insertDB($benefit)
     {
-        $this->conn->insertDB($this->conn->prepareInsert($benefit));
+        $this->conn->insertDB($benefit);
     }
 
     /** SelectDB  */
     public function selectDB()
     {
         $this->conn->selectDB();
+    }
+
+    /** Clean table  */
+    public function cleanTable($nameTable)
+    {
+        $this->conn->cleanTable($nameTable);
     }
 
 }

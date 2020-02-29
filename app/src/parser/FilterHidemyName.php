@@ -12,10 +12,11 @@ trait FilterHidemyName
     public function specialPrepOutput($data)
     {
         /** deff count arrays
-         * @var  integer $maxCount number of elements in the largest array  in $data*/
+         * @var  integer $maxCount number of elements in the largest array  in $data
+         */
 
         $maxCount = 0;
-        $dt =array();
+        $dt = array();
 
         foreach ($data as $a) {
             $c = count((array)$a);
@@ -24,11 +25,15 @@ trait FilterHidemyName
         /** prepare data   */
         for ($f = 0; $f < $maxCount; $f++) {
             $str = '';
-                (empty($data[1][$f])) ? $str .= '\' \',' : $str .= '\'' . $data[1][$f] . ':';
-                (empty($data[2][$f])) ? $str .= '\' \',' : $str .= $data[2][$f] . '\', ';
-                (empty($data[3][$f])) ? $str .= '\' \',' : $str .= '\'' . $data[3][$f] . '\', ';
-                (empty($data[4][$f])) ? $str .= '\' \',' : $str .= '\'' . $data[4][$f] . '\', ';
-                (empty($data[5][$f])) ? $str .= '\' \',' : $str .= '\'' . $data[5][$f] . '\'';
+            if (empty(strip_tags($data[1][$f])) or empty(strip_tags($data[1][$f]))) {
+                break;
+            } else  $str .= '\'' . strip_tags($data[1][$f]) . ':' . strip_tags($data[2][$f]) . '\', ';
+
+            (empty($a = strip_tags($data[3][$f]))) ? $str .= '\'  \',' : $str .= '\'' . $a . '\', ';
+
+            (strip_tags($data[4][$f]) == 'Высокая') ? $str .= '\'да\'' . ', ' : $str .= '\'нет\'' . ', ';
+
+            (empty($a = strip_tags($data[5][$f]))) ? $str .= '\'  \' ' : $str .= '\'' . $a . '\' ';
             $dt[] = $str;
         }
 

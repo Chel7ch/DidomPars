@@ -6,9 +6,8 @@ namespace DB;
 class DBCreateTable
 {
 
-    private $pdo;
 
-    public function DBase(IDBConnection $sql)
+    public function __construct(IDBConnection $sql)
     {
         $this->sql = $sql;
     }
@@ -28,19 +27,23 @@ class DBCreateTable
             $tb .= ' field' . $i . ' TEXT,';
         $tb = substr($tb, 0, -1) . ')';
         $tb .= 'ENGINE=InnoDB DEFAULT CHARSET=utf8';
-
+        /**
+         * id
+         * field1 - IP:Port
+         * field2 - type
+         * field3 - anonim
+         * field4 - country
+         * field5 - failure
+         * field6 - datetime field6  DATETIME
+         */
         $commands = [ $tb,
             'CREATE TABLE IF NOT EXISTS proxy (
             id int(6) AUTO_INCREMENT PRIMARY KEY,
-            IP  VARCHAR (20) NOT NULL,
-            port  VARCHAR (6),
-            type  VARCHAR (6),
-            anonim  INTEGER (2),
-            delayResp  INTEGER (6),
-            checkMy   TIMESTAMP,
-            checkThey   DATETIME,
-            failure   INTEGER (2),
-            country  VARCHAR (80)
+            field1  VARCHAR (22) NOT NULL,
+            field2  VARCHAR (12),
+            field3  VARCHAR (10),
+            field4  VARCHAR (50),
+            field5  INTEGER (2)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
         ];
 

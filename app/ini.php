@@ -23,10 +23,10 @@ define('REPEAT_ERR_URL_DELAY', 60); // time between repeatErrorURL
 define('LEVELS', 1); // number of Spider pass levels
 define('SAVE_HTML_PAGE', 0);// 1 - save in storage html page
 /** prepare  output */
-define('SPECIAL_PREPARE', 0);// 1 - turn on special prepare, 0 - turn off
-define('SPECIAL_FILTER', 'FilterHidemyName');// trait name special prepare filter
+//define('SPECIAL_PREPARE', 1);// 1 - turn on special prepare, 0 - turn off
+//define('SPECIAL_FILTER', 'FilterHidemyName');// trait name special prepare filter
 define('PREPARE_BENEFIT', 1); // 1 - true turnOverOutput 0 - true straightOutput
-define('PREP_QUERY_FOR_DB', 0); // 1 - for write in DB , 0 for write in file
+define('PREP_QUERY_FOR_DB', 1); // 1 - for write in DB , 0 for write in file
 /** DB */
 define('DB_NAME', 'parser');
 define('TAB_NAME', $tabName);

@@ -10,7 +10,7 @@ abstract class ParserDiDOM extends PrepareOutput
 {
 
     /**plug-in traits */
-    use CleanLinks, FilterHidemyName;
+    use CleanLinks;
 
     /**
      * @var array scratch  XML expressions for searching on a page. Needs of benefits
@@ -98,10 +98,9 @@ abstract class ParserDiDOM extends PrepareOutput
      */
     public function prepOutput($data)
     {
-        if (SPECIAL_PREPARE == 1) $data = $this->specialPrepOutput($data);
-        elseif (PREPARE_BENEFIT == 1) $data = $this->turnOverOutput($data);
+        if (PREPARE_BENEFIT == 1) $data = $this->turnOverOutput($data);
         elseif (PREPARE_BENEFIT == 0) $data = $this->straightOutput($data);
-        if (PREP_QUERY_FOR_DB == 1) $data = $this->prepInsertDB($data);
+        if (PREP_QUERY_FOR_DB == 1) $data = $this->prepInsertDB($data, 'proxy');
 
         return $data;
     }

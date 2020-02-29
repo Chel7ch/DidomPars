@@ -17,7 +17,7 @@ abstract class PrepareOutput
         $dt[] = '\'' . $data[0] . '\'';
         for ($i = 1; $i < count($data); $i++) {
             for ($f = 1; $f < count($data[$i]); $f++) {
-                $str .= '\'' . $data[$i][$f] . '\', ';
+                $str .= '\'' . strip_tags($data[$i][$f]) . '\', ';
             }
             $dt[] = substr($str, 0, -2);
         }
@@ -47,7 +47,7 @@ abstract class PrepareOutput
         for ($f = 0; $f < $maxCount; $f++) {
             $str = '\'' . $data[0] . '\', ';
             for ($i = 1; $i < $numbArray; $i++) {
-                (empty($data[$i][$f])) ? $str .= '\' \',' : $str .= '\'' . $data[$i][$f] . '\', ';
+                (empty(strip_tags($data[$i][$f]))) ? $str .= '\' \',' : $str .= '\'' . strip_tags($data[$i][$f]) . '\', ';
             }
             $dt[] = substr($str, 0, -2);
         }

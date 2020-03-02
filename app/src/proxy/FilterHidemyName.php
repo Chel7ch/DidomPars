@@ -1,6 +1,6 @@
 <?php
 
-namespace Parser;
+namespace Proxy;
 
 trait FilterHidemyName
 {
@@ -14,7 +14,6 @@ trait FilterHidemyName
         /** deff count arrays
          * @var  integer $maxCount number of elements in the largest array  in $data
          */
-
         $maxCount = 0;
         $dt = array();
 
@@ -33,10 +32,15 @@ trait FilterHidemyName
 
             (strip_tags($data[4][$f]) == 'Высокая') ? $str .= '\'да\'' . ', ' : $str .= '\'нет\'' . ', ';
 
-            (empty($a = strip_tags($data[5][$f]))) ? $str .= '\'  \' ' : $str .= '\'' . $a . '\' ';
+            if(empty(strip_tags($data[5][$f]))) $str .= '\'  \' ';
+            else{
+                /** deleting apostrophes*/
+                $a = str_replace("'", '', strip_tags($data[5][$f]));
+                $str .= '\'' . $a . '\' ';
+            }
+
             $dt[] = $str;
         }
-
         return $dt;
     }
 }

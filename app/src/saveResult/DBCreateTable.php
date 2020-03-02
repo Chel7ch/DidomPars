@@ -34,13 +34,13 @@ class DBCreateTable
          * field3 - anonim
          * field4 - country
          * field5 - failure
-         * field6 - datetime field6  DATETIME
+         * field6 - DATETIME
          */
         $commands = [ $tb,
-            'CREATE TABLE IF NOT EXISTS proxy (
+            'CREATE TABLE IF NOT EXISTS collect_proxy (
             id int(6) AUTO_INCREMENT PRIMARY KEY,
             field1  VARCHAR (22) NOT NULL,
-            field2  VARCHAR (12),
+            field2  VARCHAR (15),
             field3  VARCHAR (10),
             field4  VARCHAR (50),
             field5  INTEGER (2)

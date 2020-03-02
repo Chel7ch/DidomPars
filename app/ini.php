@@ -20,11 +20,11 @@ define('ERR_RESP_FILE', PROJECT_DIR . '/logs/err_response.csv');
 define('USLEEP', 0.4 *100000); // milliseconds waiting for script
 define('REPEAT_ERR_URL', 0); // number repeat of the repeatErrorURL
 define('REPEAT_ERR_URL_DELAY', 60); // time between repeatErrorURL
-define('LEVELS', 1); // number of Spider pass levels
+define('LEVELS', 50); // number of Spider pass levels
 define('SAVE_HTML_PAGE', 0);// 1 - save in storage html page
+/** benefit */
+define('USING_XPATH', 1); // 1 - search using XPATH expressions 0 - search using DiDom expressions
 /** prepare  output */
-//define('SPECIAL_PREPARE', 1);// 1 - turn on special prepare, 0 - turn off
-//define('SPECIAL_FILTER', 'FilterHidemyName');// trait name special prepare filter
 define('PREPARE_BENEFIT', 1); // 1 - true turnOverOutput 0 - true straightOutput
 define('PREP_QUERY_FOR_DB', 1); // 1 - for write in DB , 0 for write in file
 /** DB */

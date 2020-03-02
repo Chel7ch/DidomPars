@@ -20,14 +20,18 @@ class SpiderParserDiDOM extends ParserDiDOM
             $this->linked = array();
             $links = $this->parsPage($this->url)->getLinks();
             $b = $this->parsPage($this->url)->prepOutput($this->benefit($this->url, $scratch));
-            $this->insertDB($b);
+            print_r($b);
+            echo "запрос<br>";
+            if (!empty($b)) $this->insertDB($b);
         }
 
         for ($i = 1; $i <= LEVELS; $i++) {
             foreach ($links as $nextLink) {
                 $subLinks = $this->parsPage($nextLink)->getLinks();
                 $b = $this->parsPage($nextLink)->prepOutput($this->benefit($nextLink, $scratch));
-                $this->insertDB($b);
+                print_r($b);
+                echo "запрос<br>";
+                if (!empty($b)) $this->insertDB($b);
 
                 if (!empty($subLinks)) {
                     foreach ($subLinks as $subLink) {

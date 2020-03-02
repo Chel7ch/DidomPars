@@ -33,10 +33,17 @@ class HttpPHPWebDriver implements IHttpClient
     public function getPage($page)
     {
         $content = '';
+        static $d =0;
         try {
+
+            if( $d < 5) {
+                $this->driver->get($page);
+                sleep(10); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                $d++;
+            }
+
             $this->driver->get($page);
-//            sleep(10); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//            $this->driver->get($page);
+            sleep(rand(3, 7)); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
             $cookie = new \Facebook\WebDriver\Cookie('cookie_name', 'cookie_value');
             $this->driver->manage()->addCookie($cookie);

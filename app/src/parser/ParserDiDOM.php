@@ -85,8 +85,7 @@ abstract class ParserDiDOM extends PrepareOutput
     {
         $data[] = $page;
         foreach ($scratches as $scratch) {
-//            $data[] = $this->page->find($scratch);
-            $data[] = $this->page->find($scratch, Query::TYPE_XPATH);
+            (USING_XPATH == 1) ? $data[] = $this->page->find($scratch, Query::TYPE_XPATH) : $data[] = $this->page->find($scratch);
         }
         return $data;
     }

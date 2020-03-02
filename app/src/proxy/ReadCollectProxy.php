@@ -1,12 +1,12 @@
 <?php
 
-namespace Parser;
+namespace Proxy;
 
-class CollectProxy extends SpiderParserDiDOM
+class ReadCollectProxy extends \Parser\ReadSaveFiles
 {
     use FilterHidemyName;
 
-    public $tail = '/ru/proxy-list/?start=';
+    public $tail = '/proxy-list/';
 
     public function cleanLinks($links)
     {
@@ -29,14 +29,22 @@ class CollectProxy extends SpiderParserDiDOM
     public function prepOutput($data)
     {
         $data = $this->specialPrepOutput($data);
-        if (PREP_QUERY_FOR_DB == 1) $data = $this->prepInsertDB($data, 'proxy');
+        if (PREP_QUERY_FOR_DB == 1) $data = $this->prepInsertDB($data, 'collect_proxy');
 
         return $data;
     }
 
     public function prepInsertDB($data, $tabName = TAB_NAME)
     {
-        $tab = 'INSERT INTO ' . $tabName . '(';
+        $query = '';
+        if(empty($data)){
+            return $query;
+        }
+
+        if($tabName == TAB_NAME) $firstRow = 'INSERT INTO ' . TAB_NAME . '(links,';
+        else $firstRow = 'INSERT INTO ' . $tabName . '(';
+
+        $tab = $firstRow;
         $val = ' VALUES';
         for ($i = 1; $i < TAB_FIELDS; $i++) {
             $tab .= 'field' . ($i) . ',';

@@ -47,9 +47,17 @@ abstract class PrepareOutput
         for ($f = 0; $f < $maxCount; $f++) {
             $str = '\'' . $data[0] . '\', ';
             for ($i = 1; $i < $numbArray; $i++) {
-                (empty(strip_tags($data[$i][$f]))) ? $str .= '\' \',' : $str .= '\'' . strip_tags($data[$i][$f]) . '\', ';
+                if(empty(strip_tags($data[$i][$f]))) $str .= '\'  \' ';
+                else{
+                    /** deleting apostrophes*/
+                    $a = str_replace("'", '', strip_tags($data[$i][$f]));
+                    /** escaping single quotes*/
+//                    $a = str_replace("'", '\\\'', strip_tags($data[$i][$f]));
+
+                    $str .= '\'' . $a . '\' ';
+                }
             }
-            $dt[] = substr($str, 0, -2);
+            $dt[] = substr($str, 0, -1);
         }
 
         return $dt;
@@ -60,9 +68,14 @@ abstract class PrepareOutput
      * @param string $tabName
      * @return string
      */
-    public function prepInsertDB($data, $tabName = TAB_NAME)
+    public function prepInsertDB($data)
     {
-        $tab = 'INSERT INTO ' . $tabName . '(links,';
+        $query = '';
+        if(empty($data)){
+            return $query;
+        }
+
+        $tab = 'INSERT INTO ' . TAB_NAME . '(links,';
         $val = ' VALUES';
         for ($i = 0; $i < TAB_FIELDS; $i++)
             $tab .= 'field' . ($i + 1) . ',';

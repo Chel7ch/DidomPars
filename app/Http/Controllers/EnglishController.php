@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\English;
-use App\Services\EnglishService;
-use App\Services\EnglishShowwService;
+//use App\Services\EnglishShowwService;
+use App\Word;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class EnglishController extends Controller
 {
@@ -32,7 +31,7 @@ class EnglishController extends Controller
      */
     public function create()
     {
-        //
+        return view('content.words.createWord');
     }
 
     /**
@@ -43,7 +42,8 @@ class EnglishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        English::create($request->all());
+        return redirect('word');
     }
 
     /**

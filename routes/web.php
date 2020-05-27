@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'WordController@index');
-Route::get('english/{id}/edit', 'EnglishController@edit');
+//Route::get('english/{id}/edit', 'EnglishController@edit');
 //Route::get('english/{id}', 'EnglishController@show');
 Route::resource('english', 'EnglishController');
 Route::resource('russian', 'RussianController');

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\English;
 use App\Services\EnglishService;
+use App\Services\EnglishShowwService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EnglishController extends Controller
 {
@@ -15,9 +17,10 @@ class EnglishController extends Controller
      */
     public function index()
     {
-        !empty($_GET['alf']) ? $char = EnglishService::alphabetSign($_GET['alf']) : $char = 'a%';
+        !empty($_GET['alf']) ? $char = English::alphabetSign($_GET['alf']) : $char = 'a%';
         $lim = 15;
-        $words = EnglishService::getEnWords($char, $lim);
+        $words = English::enWordAnotherMeaning(English::enWordsList($char, $lim));
+
         $char = $char[0];
         return view('content.words.indexWord', compact('words', 'char'));
     }
@@ -35,7 +38,7 @@ class EnglishController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,18 +49,21 @@ class EnglishController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\English  $english
+     * @param English $english
      * @return \Illuminate\Http\Response
      */
-    public function show(English $english)
+    public function show($english)
     {
-        //
+        $word = English::enWordAnotherMeaning($english);
+        $word =$word [0];
+
+        return view ('content.words.showWord',compact('word'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\English  $english
+     * @param English $english
      * @return \Illuminate\Http\Response
      */
     public function edit(English $english)
@@ -68,8 +74,8 @@ class EnglishController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\English  $english
+     * @param \Illuminate\Http\Request $request
+     * @param English $english
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, English $english)
@@ -80,7 +86,7 @@ class EnglishController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\English  $english
+     * @param English $english
      * @return \Illuminate\Http\Response
      */
     public function destroy(English $english)

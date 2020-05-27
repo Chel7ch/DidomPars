@@ -12,16 +12,16 @@
 			@endunless
 		</div>
 		<div class="main_desc col-sm-12">
-{{--			{{$word->part_of_speech}}&nbsp;&nbsp;{{$word->ru_words[0]['russian']}}<br>--}}
-{{--                @php--}}
-{{--                    if (isset($word->count)){--}}
-{{--                      for($i=2;$i<=$word->count;$i++){--}}
-{{--                        $w='russian'.$i;--}}
-{{--                        $w=$word->$w;--}}
-{{--                        echo htmlspecialchars($word->part_of_speech).'&nbsp;&nbsp;'.htmlspecialchars($w)."<br>";--}}
-{{--                      }--}}
-{{--                    }--}}
-{{--                @endphp--}}
+			{{$word->part_of_speech}}&nbsp;&nbsp;{{$word->russian}}<br>
+                @php
+                    if (isset($word->count)){
+                      for($i=2;$i<=$word->count;$i++){
+                        $w='russian'.$i;
+                        $w=$word->$w;
+                        echo htmlspecialchars($word->part_of_speech).'&nbsp;&nbsp;'.htmlspecialchars($w)."<br>";
+                      }
+                    }
+                @endphp
 		</div>
 	</div>
 </div>

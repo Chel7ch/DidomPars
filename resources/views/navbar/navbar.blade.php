@@ -7,12 +7,12 @@
        <a class="navbar-brand" href="#">Navbar</a>
   <div class="collapse navbar-collapse " id="navbarNavDropdown">
     <ul class="navbar-nav ">
-         <li class="nav-item active"><a class="nav-link" href="word?alf=A">A</a></li>
+         <li class="nav-item active"><a class="nav-link" href="english?alf=A">A</a></li>
 	  @for( $chr=65; $chr++<90;)
     {{--преобразование числа в Utf символ--}}
 	<?php
       $str = chr($chr);
-		 echo "<li class='nav-item '><a class='nav-link' href='word?alf=".$str."'>".$str."</a></li>";
+		 echo "<li class='nav-item '><a class='nav-link' href='english?alf=".$str."'>".$str."</a></li>";
      ?>
 	@endfor
     </ul>

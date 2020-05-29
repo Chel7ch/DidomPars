@@ -8,14 +8,14 @@
 	<li class="nav-item"><a class="nav-link active" href="#Main" data-toggle="tab">Main</a></li>
 	<li class="nav-item"><a class="nav-link" href="#Irregular" data-toggle="tab">Irregular</a></li>
 	<li class="nav-item"><a class="nav-link" href="#Additionally" data-toggle="tab">Additionally</a></li>
-	<li class="nav-item"><a class="nav-link " href="#Crossing" data-toggle="tab">Crossing</a></li>
-	<li class="nav-item"><a class="nav-link " href="#Category" data-toggle="tab">Category</a></li>
+{{--	<li class="nav-item"><a class="nav-link " href="#Crossing" data-toggle="tab">Crossing</a></li>--}}
+{{--	<li class="nav-item"><a class="nav-link " href="#Category" data-toggle="tab">Category</a></li>--}}
 </ul>
 {{-- Tab panes --}}
 <div class="tab-content">
 	<div class="tab-pane fade show active" id="Main">
 		<br>
-		{!! Form::open(array('url'=>'word')) !!}
+		{!! Form::open(array('url'=>'english')) !!}
 		{{-- <form class="form-horizontal" enctype="multipart/form-data" action="/lara/public/word" method="post"> --}}
 			@csrf
 

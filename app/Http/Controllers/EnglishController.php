@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\English;
 //use App\Services\EnglishShowwService;
+use App\Russian;
 use App\Word;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,7 @@ class EnglishController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -27,7 +27,7 @@ class EnglishController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -38,12 +38,26 @@ class EnglishController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Russian $russians
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(Request $request, Russian $russians)
     {
-        English::create($request->all());
-        return redirect('word');
+
+        $english = English::create($request->all());
+
+        $max = English::max('id');
+
+        $russians = Russian::create($request->all());
+
+//        $russians = Russian::create([
+//            'russian'  =>  'Home Brixton Faux Leather Armchair',
+//            'part_of_speech' =>  $max,
+//        ]);
+
+        $russians->englishes()->attach($max);
+
+        return redirect('english');
     }
 
     /**
@@ -55,9 +69,9 @@ class EnglishController extends Controller
     public function show($english)
     {
         $word = English::enWordAnotherMeaning($english);
-        $word =$word [0];
+        $word = $word[0];
 
-        return view ('content.words.showWord',compact('word'));
+        return view('content.words.showWord', compact('word'));
     }
 
     /**

@@ -11,4 +11,9 @@ class Russian extends Model
     protected $fillable = [
         'id', 'russian', 'part_of_speech', 'created_at', 'updated_at'
     ];
+
+    public function englishes()
+    {
+        return $this->belongsToMany(English::class);
+    }
 }

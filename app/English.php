@@ -13,6 +13,14 @@ class English extends Model
         'id', 'addition_id', 'english', 'transcription', 'past_simp', 'transcription2', 'past_part', 'transcription3', 'meaning4', 'transcription4', 'mark_except', 'еxplanation', 'lesson_num', 'created_at', 'updated_at'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+//    public function russians()
+//    {
+//        return $this->belongsToMany(Russian::class);
+//    }
+
     public static function alphabetSign($sign)
     {
         $sign = substr(strtolower(htmlentities($sign)), 0, 1);

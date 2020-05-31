@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class English extends Model
@@ -12,14 +13,6 @@ class English extends Model
     protected $fillable = [
         'id', 'addition_id', 'english', 'transcription', 'past_simp', 'transcription2', 'past_part', 'transcription3', 'meaning4', 'transcription4', 'mark_except', 'еxplanation', 'lesson_num', 'created_at', 'updated_at'
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-//    public function russians()
-//    {
-//        return $this->belongsToMany(Russian::class);
-//    }
 
     public static function alphabetSign($sign)
     {
@@ -63,7 +56,6 @@ class English extends Model
     public static function enWordAnotherMeaning($english)
     {
         $en = self::enWord($english);
-//        $en = $english;
 
         for ($i = 0, $cou = count($en); $i < $cou; $i++) {
             for ($ii = $i + 1; $ii < $cou; $ii++) {
@@ -78,6 +70,20 @@ class English extends Model
             }
         }
         return json_decode(json_encode($en));
+    }
+
+    public static function saveNewWord($request)
+    {
+        self::create($request->all());
+        $max = self::max('id');
+
+        for ($i = 1; $i <= 4; $i++) {
+            if ($request->{'russian' . $i}) {
+                $russians = Russian::create(['russian' => $request->{'russian' . $i},
+                    'part_of_speech' => $request->{'part_of_speech' . $i}]);
+                $russians->englishes()->attach($max);
+            }
+        }
     }
 
 }

@@ -8,10 +8,10 @@
     {!! Form::text('transcription', null, ['class'=>'form-control transcr','placeholder'=>'Транскрипция']) !!}
   </div>
   <div class="form-group col-md-2">
-      @include('content.words.components.__partOfSpeech', ['partOfSpeeh' => 'part_of_speech'])
+      @include('content.words.components.__partOfSpeech', ['partOfSpeeh' => 'part_of_speech1'])
   </div>
   <div class="form-group col-md-3">
-    {!! Form::text('russian', null, ['class'=>'form-control','placeholder'=>'Перевод']) !!}
+    {!! Form::text('russian1', null, ['class'=>'form-control','placeholder'=>'Перевод']) !!}
   </div>
 </div>
 <div class="form-row">

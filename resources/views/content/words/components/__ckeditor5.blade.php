@@ -1,13 +1,8 @@
-{!! Form::textarea('description',null, ['class'=>'form-control','id'=>'editor','placeholder'=>'Место для примеров и разъяснений']) !!}
+<textarea name="content" id="editor"></textarea>
 <script>
 	ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        placeholder: 'Место для примеров и разъяснений'
-    } )
-    .then( editor => {
-        console.log( editor );
-    } )
-    .catch( error => {
-        console.error( error );
-    } );
+	.create( document.querySelector( '#editor' ))
+	.catch( error => {
+		console.error( error );
+	} );
 </script>

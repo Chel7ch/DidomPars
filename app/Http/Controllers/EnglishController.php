@@ -53,7 +53,7 @@ class EnglishController extends Controller
     public function show($english)
     {
         $word = English::enWordAnotherMeaning($english);
-        $word = $word[0];
+//        $word = $word[0];
 
         return view('content.words.showWord', compact('word'));
     }
@@ -76,7 +76,7 @@ class EnglishController extends Controller
 //         'required','unique:words','alpha'],
 // ]);
 //echo '<pre>';
-//        print_r($word);
+        print_r($word);
         return view ('content.words.editWord', compact('word'));
     }
 

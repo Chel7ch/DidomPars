@@ -2,28 +2,30 @@
 
 <div class="form-row">
 	<div class="form-group col-md-3">
-		{!! Form::text('past_simp', null, ['class'=>'form-control','placeholder'=>'Past_Simple' ]) !!}
+		<input type="text" class="form-control"  placeholder="Past_Simple" name="past_simp">
 	</div>
 	<div class="form-group col-md-2">
-		{!! Form::text('transcription2', null, ['class'=>'form-control transcr','placeholder'=>'Транскрипция' ]) !!}
+		<input type="text" class="form-control"  placeholder="Транскрипция" name="transcription2">
 	</div>
 	<div class="form-group col-md-2">
+		<select  class="form-control" name="mark_except">
 			@include('content.words.components.__markExcept')
+		</select>
 	</div>
 </div>
 <div class="form-row">
 	<div class="form-group col-md-3">
-		{!! Form::text('past_part', null, ['class'=>'form-control','placeholder'=>'Past Participle' ]) !!}
+		<input type="text" class="form-control" placeholder="Past Participle" name="past_part">
 	</div>
 	<div class="form-group col-md-2">
-		{!! Form::text('transcription3', null, ['class'=>'form-control transcr','placeholder'=>'Транскрипция' ]) !!}
+		<input type="text" class="form-control" placeholder="Транскрипция" name="transcription3">
 	</div>
 </div>
 <div class="form-row">
 	<div class="form-group col-md-3">
-		{!! Form::text('meaning4', null, ['class'=>'form-control','placeholder'=>'4 meaning of the word' ]) !!}
-		</div>
+		<input type="text" class="form-control" placeholder="4 meaning of the word" name="meaning4">
+	</div>
 	<div class="form-group col-md-2">
-		{!! Form::text('transcription4', null, ['class'=>'form-control transcr','placeholder'=>'Транскрипция' ]) !!}
+		<input type="text" class="form-control" placeholder="Транскрипция" name="transcription4">
 	</div>
 </div>

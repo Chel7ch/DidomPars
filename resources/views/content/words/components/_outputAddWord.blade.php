@@ -3,7 +3,7 @@
 	<div class="card-body">
 
 		{{--@while ($row1 = $stmt1->fetch())--}}
-		<span class="bold_left">{{$word->english}}</span>&nbsp;&nbsp;-&nbsp;&nbsp;<span class="owerflow"> {{$word->english}}</span><br>
+{{--		<span class="bold_left">{{$word->english}}</span>&nbsp;&nbsp;-&nbsp;&nbsp;<span class="owerflow"> {{$word->english}}</span><br>--}}
 		{{--@endwhile--}}
 	</div>
 </div>

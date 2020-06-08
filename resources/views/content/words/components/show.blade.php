@@ -1,14 +1,4 @@
 <div class="container-fluid">
-
-    <pre>
-            @php
-                    print_r($word);
-                      //print_r($en);
-            //$collection->dump();
-            @endphp
-            </pre>
-
-
 	<div class="row">
 		{{--content--}}
 		<div class="col-sm-8">

@@ -1,1 +1,0 @@
-{!! Form::select( 'part_of_speech4',['noun' => 'сущ.', 'verb' => 'глаг.', 'adj.' => 'прил.', 'adv.' => 'нареч.', 'conj.' => 'союз', 'prep.' => 'предл.', 'pron.' => 'мест.', 'interj.' => 'междометие', 'num.' => 'числит.'],null, ['class'=>'form-control','placeholder' =>'ч.речи']) !!}

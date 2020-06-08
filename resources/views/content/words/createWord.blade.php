@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts/app')
 
 @section('title',('Input of words'))
 
@@ -15,8 +15,7 @@
 <div class="tab-content">
 	<div class="tab-pane fade show active" id="Main">
 		<br>
-		{!! Form::open(array('url'=>'english')) !!}
-		{{-- <form class="form-horizontal" enctype="multipart/form-data" action="/lara/public/word" method="post"> --}}
+		<form class="form-horizontal" enctype="multipart/form-data" action="/rosetta/public/english" method="POST">
 			@csrf
 
 			@include('content.words.components._formMain')
@@ -34,11 +33,14 @@
 			@include('content.words.components.__lesson')
 		</div>
 	</div>
+@php echo $_SERVER['DOCUMENT_ROOT']; echo __DIR__;
+@endphp
+
 	@include('content.words.components._formCrossing')
 	@include('content.words.components._formButton')
-	{!! Form::close() !!}
-{{-- </form> --}}
+</form>
 @include('error.formErrorMessage')
 </div>
+
 
 @endsection

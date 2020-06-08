@@ -1,1 +1,10 @@
-{!! Form::select( $partOfSpeeh,['noun' => 'noun', 'verb' => 'verb', 'adj.' => 'adjective', 'adv.' => 'adverb', 'conj.' => 'conjunction', 'prep.' => 'preposition', 'pron.' => 'pronoun', 'interj.' => 'interjection', 'num.' => 'numeral'],null, ['class'=>'form-control','placeholder' =>'part_of_speech']) !!}
+<option value="" selected>part_of_speech</option>
+<option value="noun">noun</option>
+<option value="verb">verb</option>
+<option value="adj.">adjective</option>
+<option value="adv.">adverb</option>
+<option value="conj.">conjunction</option>
+<option value="prep.">preposition</option>
+<option value="pron.">pronoun</option>
+<option value="interj.">interjection</option>
+<option value="num.">numeral</option>

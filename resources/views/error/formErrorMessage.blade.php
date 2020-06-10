@@ -1,10 +1,3 @@
-@php
-// echo "<pre>
-// 	var_dump($word->id);<br>
-// </pre>"
-
-
-@endphp
 @if ($errors->any())
     <div class="alert alert-danger">
 

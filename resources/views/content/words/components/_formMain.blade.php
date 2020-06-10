@@ -13,7 +13,7 @@
     </select>
   </div>
   <div class="form-group col-md-3">
-    <input type="text" class="form-control"  placeholder="Перевод" name="russian">
+    <input type="text" class="form-control"  placeholder="Перевод" name="russian1">
   </div>
 </div>
 <div class="form-row">

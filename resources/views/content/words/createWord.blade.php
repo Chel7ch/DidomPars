@@ -15,7 +15,7 @@
 <div class="tab-content">
 	<div class="tab-pane fade show active" id="Main">
 		<br>
-		<form class="form-horizontal" enctype="multipart/form-data" action="/rosetta/public/english" method="POST">
+		<form class="form-horizontal" enctype="multipart/form-data" action="{{ action('EnglishController@store') }}" method="POST">
 			@csrf
 
 			@include('content.words.components._formMain')
@@ -33,9 +33,6 @@
 			@include('content.words.components.__lesson')
 		</div>
 	</div>
-@php echo $_SERVER['DOCUMENT_ROOT']; echo __DIR__;
-@endphp
-
 	@include('content.words.components._formCrossing')
 	@include('content.words.components._formButton')
 </form>

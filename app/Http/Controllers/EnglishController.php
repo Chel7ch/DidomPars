@@ -75,8 +75,9 @@ class EnglishController extends Controller
 //     'english' => [
 //         'required','unique:words','alpha'],
 // ]);
-//echo '<pre>';
+echo '<pre>';
         print_r($word);
+        echo'</pre>';
         return view ('content.words.editWord', compact('word'));
     }
 

@@ -3,6 +3,8 @@
 	<div class="modal-dialog modal-lg " role="document">
 		<div class="modal-content">
 			<div class="modal-body">
+                <?php echo '<pre>'; print_r($word); ?>
+
 				@include('content.words.components.show')
 			</div>
 			<div class="modal-footer">

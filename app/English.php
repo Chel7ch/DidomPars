@@ -14,13 +14,6 @@ class English extends Model
         'id', 'addition_id', 'english', 'transcription', 'past_simp', 'transcription2', 'past_part', 'transcription3', 'meaning4', 'transcription4', 'mark_except', 'еxplanation', 'lesson_num', 'created_at', 'updated_at'
     ];
 
-    public static function alphabetSign($sign)
-    {
-        $sign = substr(strtolower(htmlentities($sign)), 0, 1);
-        (97 <= ord($sign) and ord($sign) <= 122) ? $sign = $sign . "%" : $sign = 'a%';
-        return $sign;
-    }
-
     public static function enWordsList($char, $lim)
     {
         $words = DB::table('englishes')

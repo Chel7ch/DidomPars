@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\English;
 use App\Russian;
+use App\Services\FirstSymbolService;
 use Illuminate\Http\Request;
 
 class RussianController extends Controller
@@ -14,7 +16,13 @@ class RussianController extends Controller
      */
     public function index()
     {
-        //
+        $char = FirstSymbolService::rus();
+        $lim = 15;
+        $words = Russian::ruWordAnotherMeaning(Russian::ruWordsList($char, $lim));
+
+//        $char = mb_substr($char,0,1);
+
+        return view('content.words.indexRuWord', compact('words', 'char'));
     }
 
     /**

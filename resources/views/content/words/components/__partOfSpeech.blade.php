@@ -1,4 +1,5 @@
-<option value="" selected>part_of_speech</option>
+{{--<option value="" selected>part_of_speech</option>--}}
+<option value="" selected ><?= $word->part_of_speech ?? 'part_of_speech' ?></option>
 <option value="noun">noun</option>
 <option value="verb">verb</option>
 <option value="adj.">adjective</option>

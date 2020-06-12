@@ -1,6 +1,8 @@
 @extends('layouts/app')
 
-@section('title', 'Words')
+@section('title', 'English words')
+
+@include('navbar.enNavbar')
 
 @section('sidebar')
 <p>This is appended sidebar.</p>

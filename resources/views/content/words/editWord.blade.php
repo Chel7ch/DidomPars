@@ -17,8 +17,8 @@
 	</div>
 	<div class="tab-pane fade show active" id="Main">
 		<br>
-		<form class="form-horizontal" enctype="multipart/form-data" action="{{ action('EnglishController@store') }}" method="POST">
-		{{-- <form class="form-horizontal" enctype="multipart/form-data" action="{{ route('WordController@update', $word->id) }}" method="post"> --}}
+		<form class="form-horizontal" enctype="multipart/form-data" action="{{ action('EnglishController@store', $word->id) }}" method="POST">
+{{--		 <form class="form-horizontal" enctype="multipart/form-data" action="{{ route('EnglishController@update', $word->id) }}" method="post">--}}
 			{{-- $url = route('loginPage');
 			Route::get('profile/{id}', ['as' => 'viewProfile', 'uses' => 'ProfileController@view']);
 			$redirect = Redirect::route('loginPage'); --}}

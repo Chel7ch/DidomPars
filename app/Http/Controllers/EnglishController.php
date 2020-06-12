@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\English;
+use App\Services\FirstSymbolService;
 use App\Word;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class EnglishController extends Controller
      */
     public function index()
     {
-        !empty($_GET['alf']) ? $char = English::alphabetSign($_GET['alf']) : $char = 'a%';
+        $char = FirstSymbolService::eng();
         $lim = 15;
         $words = English::enWordAnotherMeaning(English::enWordsList($char, $lim));
 
@@ -53,7 +54,7 @@ class EnglishController extends Controller
     public function show($english)
     {
         $word = English::enWordAnotherMeaning($english);
-//        $word = $word[0];
+        $word = $word[0];
 
         return view('content.words.showWord', compact('word'));
     }

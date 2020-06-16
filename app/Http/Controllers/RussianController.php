@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\English;
 use App\Russian;
 use App\Services\FirstSymbolService;
+use App\Services\PrepearingOutputService;
 use Illuminate\Http\Request;
 
 class RussianController extends Controller
@@ -18,9 +18,11 @@ class RussianController extends Controller
     {
         $char = FirstSymbolService::rus();
         $lim = 15;
-        $words = Russian::ruWordAnotherMeaning(Russian::ruWordsList($char, $lim));
+        $rus = Russian::ruWord(Russian::ruWordsList($char, $lim));
 
-//        $char = mb_substr($char,0,1);
+        $words = PrepearingOutputService::rus($rus);
+
+        $char = mb_substr($char, 0, 1);
 
         return view('content.words.indexRuWord', compact('words', 'char'));
     }
@@ -38,7 +40,7 @@ class RussianController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -49,7 +51,7 @@ class RussianController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Russian  $russian
+     * @param \App\Russian $russian
      * @return \Illuminate\Http\Response
      */
     public function show(Russian $russian)
@@ -60,7 +62,7 @@ class RussianController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Russian  $russian
+     * @param \App\Russian $russian
      * @return \Illuminate\Http\Response
      */
     public function edit(Russian $russian)
@@ -71,8 +73,8 @@ class RussianController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Russian  $russian
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Russian $russian
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Russian $russian)
@@ -83,7 +85,7 @@ class RussianController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Russian  $russian
+     * @param \App\Russian $russian
      * @return \Illuminate\Http\Response
      */
     public function destroy(Russian $russian)

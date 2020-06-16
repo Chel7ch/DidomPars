@@ -16,10 +16,13 @@ class English extends Model
 
     public static function enWordsList($char, $lim)
     {
+        $en = array();
+
         $words = DB::table('englishes')
             ->select('english')
+            ->distinct()
             ->where('english', 'LIKE', $char)
-//            ->orderBy('english')
+            ->orderBy('english')
             //->where('lesson_num','>',-1 )
             //->where('lesson_num','<',600)
             ->take($lim)
@@ -39,30 +42,12 @@ class English extends Model
         $words = self::join('english_russian', 'englishes.id', '=', 'english_russian.english_id')
             ->join('russians', 'russians.id', '=', 'english_russian.russian_id')
             ->wherein('englishes.english', $english)
+            ->orderBy('english')
             //->paginate(15);
-            ->get();
-        $words = json_decode(json_encode($words), true);
+            ->get()
+            ->toArray();
 
         return $words;
-    }
-
-    public static function enWordAnotherMeaning($english)
-    {
-        $en = self::enWord($english);
-
-        for ($i = 0, $cou = count($en); $i < $cou; $i++) {
-            for ($ii = $i + 1; $ii < $cou; $ii++) {
-//                 unset($en[$i]['еxplanation']);//111111111111111111111111111111111111
-                if (isset($en[$i], $en[$ii]) && $en[$i]['english'] === $en[$ii]['english']) {
-                    $iii = $ii - $i + 1;
-                    $en[$i]['count'] = $iii;
-                    $en[$i]['russian' . $iii] = $en[$ii]['russian'];
-                    $en[$i]['part_of_speech' . $iii] = $en[$ii]['part_of_speech'];
-                    unset($en[$ii]);
-                }
-            }
-        }
-        return json_decode(json_encode($en));
     }
 
     public static function saveNewWord($request)

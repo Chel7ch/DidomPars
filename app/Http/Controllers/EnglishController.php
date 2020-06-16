@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\English;
 use App\Services\FirstSymbolService;
-use App\Word;
+use App\Services\PrepearingOutputService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -18,9 +18,11 @@ class EnglishController extends Controller
     {
         $char = FirstSymbolService::eng();
         $lim = 15;
-        $words = English::enWordAnotherMeaning(English::enWordsList($char, $lim));
+        $en = English::enWord(English::enWordsList($char, $lim));
 
-        $char = $char[0];
+        $words = PrepearingOutputService::eng($en );
+
+//        $char = $char[0];
         return view('content.words.indexWord', compact('words', 'char'));
     }
 

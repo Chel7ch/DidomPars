@@ -4,24 +4,54 @@ namespace App\Services;
 
 class PrepearingOutputService
 {
-    public static function eng($english)
+    public static function eng($words)
     {
-        $en = self::enWord($english);
+        for ($a = 0, $cou = count($words); $a < $cou; $a++) {
 
-        for ($i = 0, $cou = count($en); $i < $cou; $i++) {
-            for ($ii = $i + 1; $ii < $cou; $ii++) {
-//                 unset($en[$i]['еxplanation']);//111111111111111111111111111111111111
-                if (isset($en[$i], $en[$ii]) && $en[$i]['english'] === $en[$ii]['english']) {
-                    $iii = $ii - $i + 1;
-                    $en[$i]['count'] = $iii;
-                    $en[$i]['russian' . $iii] = $en[$ii]['russian'];
-                    $en[$i]['part_of_speech' . $iii] = $en[$ii]['part_of_speech'];
-                    unset($en[$ii]);
-                }
+            if (isset($words[$a]['english'])) {
+                $words[$a]['word'] = $words[$a]['english'];
+                $words[$a]['translation'] = $words[$a]['russian'];
+                unset($words[$a]['english'], $words[$a]['russian']);
+            }
+
+            for ($b = $a + 1; $b < $cou; $b++) {
+//                 unset($words[$i]['еxplanation']);//111111111111111111111111111111111111
+                if (isset($words[$a], $words[$b]) && $words[$a]['word'] === $words[$b]['english']) {
+                    $c = $b - $a + 1;
+                    $words[$a]['translation' . $c] = $words[$b]['russian'];
+                    $words[$a]['part_of_speech' . $c] = $words[$b]['part_of_speech'];
+                    $words[$a]['count'] = $c;
+                    unset($words[$b]);
+
+                } else break;
             }
         }
-        return json_decode(json_encode($en));
+        return json_decode(json_encode($words));
     }
 
+    public static function rus($words)
+    {
+        for ($a = 0, $cou = count($words); $a < $cou; $a++) {
+
+            if (isset($words[$a]['russian'])) {
+                $words[$a]['word'] = $words[$a]['russian'];
+                $words[$a]['translation'] = $words[$a]['english'];
+                unset($words[$a]['english'], $words[$a]['russian']);
+            }
+
+            for ($b = $a + 1; $b < $cou; $b++) {
+//                 unset($words[$i]['еxplanation']);//111111111111111111111111111111111111
+                if (isset($words[$a], $words[$b]) && $words[$a]['word'] === $words[$b]['russian']) {
+                    $c = $b - $a + 1;
+                    $words[$a]['translation' . $c] = $words[$b]['english'];
+                    $words[$a]['part_of_speech' . $c] = $words[$b]['part_of_speech'];
+                    $words[$a]['count'] = $c;
+                    unset($words[$b]);
+
+                } else break;
+            }
+        }
+        return json_decode(json_encode($words));
+    }
 
 }

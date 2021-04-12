@@ -30,6 +30,6 @@ Route::get('/clear', function() {
     return "Кэш очищен.";
 });
 
-// Route::get('/', function () {
-//      return view('welcome');
-// });
+//Route::get('/', function () {
+//    return view('welcome');
+//});

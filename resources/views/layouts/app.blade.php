@@ -1,5 +1,5 @@
 @include('header.head')
-{{--@include('navbar.enNavbar')--}}
+@include('navbar.enNavbar')
 
 <body>
 {{--@section('sidebar')--}}

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\EnglishController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'WordController@index');
+//Route::get('/', [EnglishController::class, 'index']);
+
+Route::get('/', 'EnglishController@index');
+//Route::get('/', 'WordController@index');
 //Route::get('english/{id}/edit', 'EnglishController@edit');
 //Route::get('english/{id}', 'EnglishController@show');
 Route::post('english', 'EnglishController@store');
@@ -31,5 +34,8 @@ Route::get('/clear', function() {
 });
 
 //Route::get('/', function () {
+//    return view('content.words.indexWord');
+//});
+//', function () {
 //    return view('welcome');
 //});

@@ -2,7 +2,7 @@
 
 @section('title', 'English words')
 
-@include('navbar.enNavbar')
+{{--@include('navbar.enNavbar')--}}
 
 @section('sidebar')
 <p>This is appended sidebar.</p>

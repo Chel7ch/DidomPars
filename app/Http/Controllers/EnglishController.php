@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\English;
+use App\Models\English;
 use App\Services\FirstSymbolService;
 use App\Services\PrepearingOutputService;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class EnglishController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function index()
     {
@@ -22,13 +24,14 @@ class EnglishController extends Controller
 
         $words = PrepearingOutputService::eng($en );
 
-//        $char = $char[0];
+        $char = $char[0];
+//        return view('content.words.indexWord');
         return view('content.words.indexWord', compact('words', 'char'));
     }
 
     /**
      * Show the form for creating a new resource.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function create()
     {

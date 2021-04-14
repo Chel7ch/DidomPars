@@ -21,12 +21,12 @@ class CreateEnglishRussianTable extends Migration
 
             $table->foreign('english_id')
                 ->references('id')
-                ->on('englishes')
+                ->on('english')
                 ->onDelete('cascade');
 
             $table->foreign('russian_id')
                 ->references('id')
-                ->on('russians')
+                ->on('russian')
                 ->onDelete('cascade');
         });
     }

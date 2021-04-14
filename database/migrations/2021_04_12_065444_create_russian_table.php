@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRussiansTable extends Migration
+class CreateRussianTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRussiansTable extends Migration
      */
     public function up()
     {
-        Schema::create('russians', function (Blueprint $table) {
+        Schema::create('russian', function (Blueprint $table) {
             $table->increments('id');
             $table->string('russian',120);
             $table->string('part_of_speech',10)->nullable();
@@ -28,6 +28,6 @@ class CreateRussiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('russians');
+        Schema::dropIfExists('russian');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEnglishesTable extends Migration
+class CreateEnglishTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEnglishesTable extends Migration
      */
     public function up()
     {
-        Schema::create('englishes', function (Blueprint $table) {
+        Schema::create('english', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('addition_id')->nullable();
             $table->string('english',20);
@@ -38,6 +38,6 @@ class CreateEnglishesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('englishes');
+        Schema::dropIfExists('english');
     }
 }

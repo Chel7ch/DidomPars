@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnglishController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +14,9 @@ use App\Http\Controllers\EnglishController;
 |
 */
 
-//Route::get('/', [EnglishController::class, 'index']);
-
 Route::get('/', 'EnglishController@index');
-//Route::get('/', 'WordController@index');
+Route::get('?alf={chr}', 'EnglishController@index')->name('index');
+
 //Route::get('english/{id}/edit', 'EnglishController@edit');
 //Route::get('english/{id}', 'EnglishController@show');
 Route::post('english', 'EnglishController@store');
@@ -24,7 +24,7 @@ Route::resource('english', 'EnglishController');
 Route::resource('russian', 'RussianController');
 
 
-Route::get('/clear', function() {
+Route::get('/clear', function () {
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
     Artisan::call('view:clear');

@@ -2,27 +2,27 @@
 
 namespace App\Services;
 
-Class FirstSymbolService
+class FirstSymbolService
 {
-    public static function cleanGet()
+    public static function cleanGet($chr = '')
     {
         $sign = '';
-        if (!empty($_GET['alf'])) $sign = mb_substr(mb_strtoupper(htmlentities($_GET['alf'])), 0, 1);
+        if (!empty($chr)) $sign = mb_substr(mb_strtoupper(htmlentities($chr)), 0, 1);
 
         return $sign;
     }
 
-    public static function eng()
+    public static function eng($chr = '')
     {
-        $sign = self::cleanGet();
+        $sign = self::cleanGet($chr);
         (65 <= ord($sign) && ord($sign) <= 90) ? $sign = $sign . "%" : $sign = 'a%';
 
         return $sign;
     }
 
-    public static function rus()
+    public static function rus($chr = '')
     {
-        $sign = self::cleanGet();
+        $sign = self::cleanGet($chr);
         (1040 <= mb_ord($sign) && mb_ord($sign) <= 1071) ? $sign = $sign . "%" : $sign = 'a%';
 
         return $sign;

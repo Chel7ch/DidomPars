@@ -15,7 +15,10 @@ use App\Http\Controllers\EnglishController;
 */
 
 Route::get('/', 'EnglishController@index');
-Route::get('?alf={chr}', 'EnglishController@index')->name('index');
+Route::prefix('english')->group(function () {
+    Route::get('{chr}', 'EnglishController@index')->name('index');
+});
+
 
 //Route::get('english/{id}/edit', 'EnglishController@edit');
 //Route::get('english/{id}', 'EnglishController@show');
@@ -36,6 +39,6 @@ Route::get('/clear', function () {
 //Route::get('/', function () {
 //    return view('content.words.indexWord');
 //});
-//', function () {
+//Route::get('/', function () {
 //    return view('welcome');
 //});

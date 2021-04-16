@@ -14,18 +14,20 @@ class EnglishController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * @param string $chr
      * @return Factory|View
      */
-    public function index()
+    public function index($chr='')
     {
-        $char = FirstSymbolService::eng();
         $lim = 15;
+        $char = FirstSymbolService::eng($chr);
+
         $en = English::enWord(English::enWordsList($char, $lim));
 
         $words = PrepearingOutputService::eng($en );
 
         $char = $char[0];
-//        return view('content.words.indexWord');
+
         return view('content.words.indexWord', compact('words', 'char'));
     }
 

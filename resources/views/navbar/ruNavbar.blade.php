@@ -1,41 +1,44 @@
 <body>
 {{-- Navbar --}}
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top ">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-primary">
+    <a class="navbar-brand" href="#">Rosetta</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Navbar</a>
-    <div class="collapse navbar-collapse " id="navbarNavDropdown">
-        <ul class="navbar-nav ">
-            @php
-                for( $chr=1040; $chr<=1071;$chr++){
-                   if( mb_chr($chr) == $char) echo "<li class='nav-item active' ><a class='nav-link' href='russian?alf="
-                   . mb_chr($chr) . "'>" . mb_chr($chr) . "</a></li>";
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
 
-                   else
-                       echo "<li class='nav-item ' ><a class='nav-link' href='russian?alf=" . mb_chr($chr). "'>"
-                   . mb_chr($chr) . "</a></li>";
-                }
-            @endphp
+            @for($chr=1040; $chr<=1071;$chr++)
+                @if(chr($chr) == $char)
+                    {{--                    <li class='nav-item active'><a class='nav-link' href='english?alf={!!chr($chr)!!} '>--}}
+                    {{--                            {!! chr($chr)!!} </a></li>--}}
+                    <li class='nav-item active'><a class='nav-link' href="{{route('index', ['chr' => chr($chr)])}} ">
+                            {!! chr($chr)!!} </a></li>
+                @else
+                    <li class='nav-item '><a class='nav-link' href="{{route('index', ['chr' => chr($chr)])}} ">
+                            {!! chr($chr)!!} </a></li>
+                @endif
+            @endfor
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+            <input type="text" class="form-control rounded-0" placeholder="Search" aria-label="Search"
+                   aria-describedby="button-addon1">
+            <button class="btn btn-dark btn-outline-secondary rounded-0 my-2 my-sm-0" type="button" id="button-addon1">
+                <i class="bi-search" style="font-size: 1rem; color: white;"></i>
+            </button>
+        </form>
+
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link " data-toggle="dropdown" href="#">
+                    <i class="bi-gear-fill" style="font-size: 2rem; color: white;"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">Link 1</a>
+                    <a class="dropdown-item" href="#">Link 2</a>
+                    <a class="dropdown-item" href="#">Link 3</a>
+                </div>
+            </li>
         </ul>
     </div>
-
-    <form class="form-inline ">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                link
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-    </ul>
 </nav>

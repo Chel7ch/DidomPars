@@ -19,6 +19,9 @@ Route::prefix('english')->group(function () {
     Route::get('{chr}', 'EnglishController@index')->name('index');
 });
 
+Route::prefix('russian')->group(function () {
+    Route::get('{chr}', 'RussianController@index')->name('ru.index');
+});
 
 //Route::get('english/{id}/edit', 'EnglishController@edit');
 //Route::get('english/{id}', 'EnglishController@show');

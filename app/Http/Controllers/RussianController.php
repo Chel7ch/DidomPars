@@ -16,8 +16,9 @@ class RussianController extends Controller
      */
     public function index()
     {
-        $char = FirstSymbolService::rus();
         $lim = 15;
+        $char = FirstSymbolService::rus();
+
         $rus = Russian::ruWord(Russian::ruWordsList($char, $lim));
 
         $words = PrepearingOutputService::rus($rus);

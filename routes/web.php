@@ -16,7 +16,8 @@ use App\Http\Controllers\EnglishController;
 
 Route::get('/', 'EnglishController@index');
 Route::prefix('english')->group(function () {
-    Route::get('{chr}', 'EnglishController@index')->name('index');
+    Route::get('_{chr}', 'EnglishController@index')->name('index');
+//    Route::get('{id}', 'EnglishController@show');
 });
 
 Route::prefix('russian')->group(function () {
@@ -26,8 +27,8 @@ Route::prefix('russian')->group(function () {
 //Route::get('english/{id}/edit', 'EnglishController@edit');
 //Route::get('english/{id}', 'EnglishController@show');
 Route::post('english', 'EnglishController@store');
-Route::resource('english', 'EnglishController');
-Route::resource('russian', 'RussianController');
+//Route::resource('english', 'EnglishController');
+//Route::resource('russian', 'RussianController');
 
 
 Route::get('/clear', function () {

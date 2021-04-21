@@ -8,6 +8,7 @@ use App\Services\PrepearingOutputService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 
 class EnglishController extends Controller
@@ -43,7 +44,7 @@ class EnglishController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function store(Request $request)
     {

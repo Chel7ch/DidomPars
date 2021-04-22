@@ -11,6 +11,8 @@
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/ckeditor5classic/build/ckeditor.js') }}"></script>
+{{--    <script type="text/javascript" src="{{ asset('../node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>--}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 

@@ -10,9 +10,7 @@
         <ul class="navbar-nav mr-auto">
 
             @for($chr=65; $chr<=90;$chr++)
-                @if(chr($chr) == $char)
-                    {{--                    <li class='nav-item active'><a class='nav-link' href='english?alf={!!chr($chr)!!} '>--}}
-                    {{--                            {!! chr($chr)!!} </a></li>--}}
+                @if(isset($char) && chr($chr) == $char)
                     <li class='nav-item active'><a class='nav-link' href="{{route('index', ['chr' => chr($chr)])}} ">
                             {!! chr($chr)!!} </a></li>
                 @else
